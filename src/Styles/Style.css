@@ -1,0 +1,173 @@
+.bg-yellow{
+    background-color: #FFC700;
+}
+.width-btn{
+    width: 130px;
+}
+
+.width-restaurant{
+    width: 80%;
+}
+
+.text-yellow{
+    color: #FFC700;
+}
+
+.vh-nav{
+    height: 10vh !important;
+}
+
+.ul {
+    list-style: none;
+  }
+
+.a {
+    text-decoration: none;
+    color: black;
+}
+
+/* DROPDOWN */
+
+.menuTrigger{
+  top: 20px;
+  right: 20px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.dropdownMenu{
+    position: absolute;
+    top: 100px;
+    right: 19px;
+    background-color: #fff;
+    width: 200px;
+  }
+
+  .polygon{
+    content: '';
+    position: absolute;
+    top: 70px;
+    right: 63px;
+  }
+
+  .activeDD{
+    opacity: 1;
+    visibility: visible;
+    transition: var(--speed) ease;
+  }
+  
+  .inactiveDD{
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: var(--speed) ease;
+  }
+
+.cart{
+    cursor: pointer;
+}
+
+.colorProile{
+  color: #613D2B;
+}
+
+.bg-white{
+  background-color: white;
+}
+
+.color-harga{
+  color:#974A4A ;
+}
+
+.btnProfile{
+  background-color: #00FF85 #00FF75 ;
+  color: #00FF45;
+  border:none;
+}
+
+.w-70{
+  width: 73%;
+}
+.w-20{
+  width: 20%;
+}
+
+/* EDITE PROFILE */
+
+.formEdite input,label {
+  border: solid #766C6C;
+  background-color: #766C6C#D2D2D2;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  height: 45px;
+}
+
+.mapBtn{
+  border: solid #766C6C;
+  border-radius: 5px;
+  height: 45px;
+  background-color: #433434;
+  color: white;
+}
+
+.formEdite button{
+  border: solid #766C6C;
+  border-radius: 5px;
+  height: 45px;
+  background-color: #433434;
+  color: white;
+}
+
+.form{
+  border: solid #766C6C;
+  border-radius: 5px;
+  height: 45px;
+  color: white;
+}
+
+
+.Card{
+  position: static;
+}
+
+/* POP UP */
+.cartItem{
+  position: absolute;
+  background-color: red;
+  color: white;
+  top:10px;
+  right: 130px;
+  border-radius: 100%;
+  text-align: center;
+  font-weight: bold;
+  width: 27px;
+  height: 27px;
+  font-size: 13px;
+  padding-top: 3px;
+}
+
+.bg-brown{
+  background-color: #F6E6DA;
+}
+
+.pp{
+  width: 180px;
+  height: 222px;
+}
+
+.bg-gray{
+  background-color: rgb(182, 179, 179) !important;
+}
+
+.bg-green{
+  background-color: #0ACF83 !important;
+}
+
+.bg-red{
+  background-color: #FF0742 !important;
+}
