@@ -33,6 +33,10 @@ func (h *handlerTransaction) FindTransaction(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
+	for i, p := range transaction {
+		transaction[i].Product.Image = path_file + p.Product.Image
+	}
+
 	w.WriteHeader(http.StatusOK)
 	response := dto.SuccessResult{Code: http.StatusOK, Data: transaction}
 	json.NewEncoder(w).Encode(response)
@@ -51,6 +55,8 @@ func (h *handlerTransaction) GetTransaction(w http.ResponseWriter, r *http.Reque
 		json.NewEncoder(w).Encode(response)
 		return
 	}
+
+	transaction.Product.Image = path_file + transaction.Product.Image
 
 	w.WriteHeader(http.StatusOK)
 	response := dto.SuccessResult{Code: http.StatusOK, Data: transaction}
