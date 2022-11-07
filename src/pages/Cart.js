@@ -9,6 +9,8 @@ import { UserContext } from '../context/userContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { API } from '../config/api';
 import { useMutation } from 'react-query';
+import toRupiah from '@develoka/angka-rupiah-js';
+
 
 function Cart(props) {
     const [modalShow, setModalShow] = React.useState(false);
@@ -37,7 +39,7 @@ const [ordered,setOrdered] = useState(false)
 
     const deleteById = useMutation(async (id) => {
         try {
-            await API.delete(`/transactions/${id}`);
+            await API.delete(`/transaction/${id}`);
             getData()
         } catch (error) {
             console.log(error);
@@ -46,7 +48,7 @@ const [ordered,setOrdered] = useState(false)
 
     const HandleAdd = async (qty, id) => {
         try {
-            await API.patch(`/transactions/${id}`, { qty: qty })
+            await API.patch(`/transaction/${id}`, { qty: qty })
             getData()
         } catch (error) {
             console.log(error);
@@ -57,7 +59,7 @@ const [ordered,setOrdered] = useState(false)
             if (qty === 0) {
                 deleteById.mutate(id)
             } else {
-                await API.patch(`/transactions/${id}`, { qty: qty })
+                await API.patch(`/transaction/${id}`, { qty: qty })
                 getData()
             }
         } catch (error) {
@@ -93,23 +95,23 @@ const [ordered,setOrdered] = useState(false)
                     <div className='col-12 col-lg-8 '>
                         <img src={Line} className='w-100'></img>
 
-                        {(props.cart).map((i) => (
+                       {cart?.map((i) => (
                                 <div key={i.id}>
                                     <div className='d-flex justify-content-between '>
                                         <div className='d-flex my-3'>
-                                            <img src={i.image}></img>
+                                            <img src={i.product.image}></img>
                                             <div className='ms-3 my-auto'>
-                                                <p className='mb-5 fw-bold'>{i.name}</p>
+                                                <p className='mb-5 fw-bold'>{i.product.product_name}</p>
                                                 <div className='d-flex'>
                                                     <button onClick={()=>props.less(i)} className='w-50 fw-bold border-0'>-</button>
-                                                    <p className=' bg-brown my-auto py-1 text-center fw-bold w-50'>{i.quantity}</p>
+                                                    <p className=' bg-brown my-auto py-1 text-center fw-bold w-50'>0</p>
                                                     <button onClick={()=>props.add(i)} className='w-50 fw-bold border-0'>+</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className='my-auto'>
                                             <div className=''>
-                                                <p className='mb-5 text-danger'>Rp {i.harga}.000</p>
+                                                <p className='mb-5 text-danger'>{toRupiah(i.product.price,{floatingPoint:0})}</p>
                                                 <div className='d-flex justify-content-end'>
                                                     <img 
                                                     onClick={()=>props.remove(i)}
@@ -119,7 +121,7 @@ const [ordered,setOrdered] = useState(false)
                                         </div>
                                     </div>
                                     <img src={Line} className='w-100'></img>
-                                </div>
+                                </div>  
                             ))
                         }
                     </div>
@@ -133,7 +135,7 @@ const [ordered,setOrdered] = useState(false)
                             </div>
                             <div className='my-auto py-3 mb-3'>
                                 <p className='text-end text-danger'>Rp {props.subTotal}.000</p>
-                                <p className='text-end'>{props.quantity}</p>
+                                <p className='text-end'>{qty}</p>
                                 <p className='text-end text-danger'>10.000</p>
                             </div>
                         </div>

@@ -132,7 +132,7 @@ function PrivatePage(props) {
   const [state, dispatch] = useContext(UserContext)
   const navigate = useNavigate()
 
-  const { data: userData } = useQuery("userCache", async () => {
+  const { data: userData } = useQuery("userDataCache", async () => {
     const response = await API.get("/users");
     return response.data.data;
   });
@@ -314,6 +314,7 @@ function GuestPage(props) {
     });
   };
 
+  const {id} = useNavigate()
 
   const handleOnSubmitLogin = useMutation(async (e) => {
     try {
@@ -323,11 +324,13 @@ function GuestPage(props) {
 
       dispatch({
         type: "LOGIN_SUCCESS",
-        payload: response.data.data,
+        payload: response.data.data
       })
 
-      if (state.user.role === "Partner") {
-        navigate('/profile-partner')
+      console.log(response);
+
+      if (response.data.data.role === "Partner") {
+        navigate('/income-transaction/'+id)
       }
 
       const alert = (<Alert variant='success' className='fw-bold py-3'>Success to login!</Alert>)
@@ -345,8 +348,9 @@ function GuestPage(props) {
     }
   });
 
-
+  
   return (
+    <>
     <Navbar className='bg-yellow vh-nav' expand="lg">
       <Container fluid className="mx-5">
         <Nav>
@@ -454,7 +458,6 @@ function GuestPage(props) {
               <Button className="width-btn btn-dark px-4 py-1" onClick={handleShowL}>Login</Button>
               <Modal className='mx-auto' show={showL} onHide={handleCloseL}>
                 <div className='p-3'>
-                  {loginMessage && loginMessage}
                   <h2 className='mb-4 fw-bold text-yellow' >Login</h2>
                   <Form onSubmit={(e) => handleOnSubmitLogin.mutate(e)} className='' >
                     <Form.Control
@@ -500,6 +503,7 @@ function GuestPage(props) {
         </Nav>
       </Container>
     </Navbar>
+    </>
   );
 }
 

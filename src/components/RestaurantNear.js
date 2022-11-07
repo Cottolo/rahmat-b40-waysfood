@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import RestaurantN from '../Dummy/RestaurantN';
 import BlankProfile from '../Pictures/blank profile.jpg';
 
 
